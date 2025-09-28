@@ -1,7 +1,7 @@
-import MetaTags from '@/components/common/MetaTags';
-import { formatDate } from '@/lib/utils';
-import { Card } from '@/components/common/Card';
-import { Badge } from '@/components/ui/badge';
+import MetaTags from "@/components/common/MetaTags";
+
+import { Card } from "@/components/common/Card";
+import { Badge } from "@/components/ui/badge";
 
 export default function AboutPage() {
   // This would typically come from an API or database
@@ -18,23 +18,25 @@ export default function AboutPage() {
         position: "Senior Frontend Developer",
         company: "Tech Company Inc.",
         period: "Jan 2020 - Present",
-        description: "Leading frontend development for enterprise applications using React and Next.js."
+        description:
+          "Leading frontend development for enterprise applications using React and Next.js.",
       },
       {
         id: "2",
         position: "Full Stack Developer",
         company: "Digital Solutions LLC",
         period: "Jun 2017 - Dec 2019",
-        description: "Developed full stack applications using Node.js, Express, and MongoDB."
-      }
+        description:
+          "Developed full stack applications using Node.js, Express, and MongoDB.",
+      },
     ],
     education: [
       {
         id: "1",
         degree: "Bachelor of Science in Computer Science",
         institution: "University of Technology",
-        period: "2013 - 2017"
-      }
+        period: "2013 - 2017",
+      },
     ],
     skills: [
       "JavaScript",
@@ -48,8 +50,8 @@ export default function AboutPage() {
       "Tailwind CSS",
       "GraphQL",
       "Docker",
-      "AWS"
-    ]
+      "AWS",
+    ],
   };
 
   return (
@@ -59,7 +61,7 @@ export default function AboutPage() {
         description="Learn more about John Doe, a full stack developer with expertise in modern web technologies."
         keywords="about, developer, portfolio, full stack, web development"
       />
-      
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
@@ -129,7 +131,9 @@ export default function AboutPage() {
               <Card key={exp.id} className="p-6">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900">{exp.position}</h3>
+                    <h3 className="text-lg font-medium text-gray-900">
+                      {exp.position}
+                    </h3>
                     <p className="text-primary-600">{exp.company}</p>
                   </div>
                   <span className="text-sm text-gray-500">{exp.period}</span>
@@ -147,7 +151,9 @@ export default function AboutPage() {
               <Card key={edu.id} className="p-6">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900">{edu.degree}</h3>
+                    <h3 className="text-lg font-medium text-gray-900">
+                      {edu.degree}
+                    </h3>
                     <p className="text-primary-600">{edu.institution}</p>
                   </div>
                   <span className="text-sm text-gray-500">{edu.period}</span>
