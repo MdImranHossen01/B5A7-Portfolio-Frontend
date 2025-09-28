@@ -8,7 +8,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/useToast';
-import MetaTags from '@/components/common/MetaTags';
 import { Input } from '@/components/ui/form/Input';
 import { Button } from '@/components/ui/form/Button';
 import { Label } from '@/components/ui/form/Label';
@@ -24,6 +23,11 @@ const registerSchema = z.object({
 });
 
 type RegisterFormData = z.infer<typeof registerSchema>;
+
+export const metadata = {
+  title: 'Register | Portfolio',
+  description: 'Create a new account to access all features of the portfolio website.',
+};
 
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -49,112 +53,106 @@ export default function RegisterPage() {
       });
       showToast.success('Registration successful');
       router.push('/');
-    } catch (error: any) {
-      showToast.error(error.response?.data?.message || 'Registration failed');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Registration failed';
+      showToast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <>
-      <MetaTags
-        title="Register | Portfolio"
-        description="Create a new account to access all features of the portfolio website."
-      />
-      
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Create a new account
-            </h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              Or{' '}
-              <Link
-                href="/login"
-                className="font-medium text-primary-600 hover:text-primary-500"
-              >
-                sign in to your existing account
-              </Link>
-            </p>
-          </div>
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="username">Username</Label>
-                <Input
-                  id="username"
-                  type="text"
-                  autoComplete="username"
-                  placeholder="Username"
-                  className="mt-1"
-                  error={!!errors.username}
-                  {...register('username')}
-                />
-                {errors.username && (
-                  <p className="mt-1 text-sm text-red-600">{errors.username.message}</p>
-                )}
-              </div>
-              <div>
-                <Label htmlFor="email">Email address</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="Email address"
-                  className="mt-1"
-                  error={!!errors.email}
-                  {...register('email')}
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-                )}
-              </div>
-              <div>
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  autoComplete="new-password"
-                  placeholder="Password"
-                  className="mt-1"
-                  error={!!errors.password}
-                  {...register('password')}
-                />
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
-                )}
-              </div>
-              <div>
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  autoComplete="new-password"
-                  placeholder="Confirm Password"
-                  className="mt-1"
-                  error={!!errors.confirmPassword}
-                  {...register('confirmPassword')}
-                />
-                {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <Button
-                type="submit"
-                className="w-full"
-                loading={isLoading}
-              >
-                Register
-              </Button>
-            </div>
-          </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Create a new account
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Or{' '}
+            <Link
+              href="/login"
+              className="font-medium text-primary-600 hover:text-primary-500"
+            >
+              sign in to your existing account
+            </Link>
+          </p>
         </div>
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="username">Username</Label>
+              <Input
+                id="username"
+                type="text"
+                autoComplete="username"
+                placeholder="Username"
+                className="mt-1"
+                error={!!errors.username}
+                {...register('username')}
+              />
+              {errors.username && (
+                <p className="mt-1 text-sm text-red-600">{errors.username.message}</p>
+              )}
+            </div>
+            <div>
+              <Label htmlFor="email">Email address</Label>
+              <Input
+                id="email"
+                type="email"
+                autoComplete="email"
+                placeholder="Email address"
+                className="mt-1"
+                error={!!errors.email}
+                {...register('email')}
+              />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+              )}
+            </div>
+            <div>
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                autoComplete="new-password"
+                placeholder="Password"
+                className="mt-1"
+                error={!!errors.password}
+                {...register('password')}
+              />
+              {errors.password && (
+                <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+              )}
+            </div>
+            <div>
+              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                autoComplete="new-password"
+                placeholder="Confirm Password"
+                className="mt-1"
+                error={!!errors.confirmPassword}
+                {...register('confirmPassword')}
+              />
+              {errors.confirmPassword && (
+                <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <Button
+              type="submit"
+              className="w-full"
+              loading={isLoading}
+            >
+              Register
+            </Button>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 }

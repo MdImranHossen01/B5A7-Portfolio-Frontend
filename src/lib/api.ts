@@ -35,6 +35,14 @@ api.interceptors.response.use(
   }
 );
 
+// Define pagination type
+interface Pagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
 // Auth API
 export const authApi = {
   login: (credentials: LoginCredentials) => api.post('/auth/login', credentials),
@@ -45,13 +53,13 @@ export const authApi = {
 // Blog API
 export const blogApi = {
   getBlogs: (filters?: BlogFilters) => 
-    api.get<{ data: Blog[]; count: number; pagination: any }>('/blogs', { params: filters }),
+    api.get<{ data: Blog[]; count: number; pagination: Pagination }>('/blogs', { params: filters }),
   getBlogBySlug: (slug: string) => api.get<{ data: Blog }>(`/blogs/slug/${slug}`),
   createBlog: (blog: BlogFormData) => api.post<{ data: Blog }>('/blogs', blog),
   updateBlog: (id: string, blog: BlogFormData) => api.put<{ data: Blog }>(`/blogs/${id}`, blog),
   deleteBlog: (id: string) => api.delete(`/blogs/${id}`),
   getAdminBlogs: (filters?: BlogFilters) => 
-    api.get<{ data: Blog[]; count: number; pagination: any }>('/blogs/admin/all', { params: filters }),
+    api.get<{ data: Blog[]; count: number; pagination: Pagination }>('/blogs/admin/all', { params: filters }),
 };
 
 // Project API
@@ -63,7 +71,7 @@ export const projectApi = {
   updateProject: (id: string, project: ProjectFormData) => api.put<{ data: Project }>(`/projects/${id}`, project),
   deleteProject: (id: string) => api.delete(`/projects/${id}`),
   getAdminProjects: (filters?: BlogFilters) => 
-    api.get<{ data: Project[]; count: number; pagination: any }>('/projects/admin/all', { params: filters }),
+    api.get<{ data: Project[]; count: number; pagination: Pagination }>('/projects/admin/all', { params: filters }),
 };
 
 // Resume API
