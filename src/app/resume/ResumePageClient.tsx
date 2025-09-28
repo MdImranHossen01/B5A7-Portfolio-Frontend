@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { resumeApi } from '@/lib/api';
 import { Resume } from '@/types/resume';
+import { ResumeData } from '@/types/resume';
 import { Button } from '@/components/ui/form/Button';
 import { Card } from '@/components/common/Card';
 import { FileText, Plus, Download, Edit, Trash2 } from 'lucide-react';
@@ -84,9 +85,6 @@ export default function ResumePageClient() {
     setIsBuilding(false);
     setSelectedResume(null);
   };
-
-  // Rest of the component remains the same...
-}
 
   if (authLoading) {
     return (

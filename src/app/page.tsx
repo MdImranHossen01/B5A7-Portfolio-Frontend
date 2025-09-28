@@ -78,7 +78,7 @@ export default function Home() {
                 </div>
                 <p className="ml-16 text-lg leading-6 font-medium text-gray-900">Projects</p>
                 <p className="mt-2 ml-16 text-base text-gray-500">
-                  Explore my latest projects and see what I've been working on.
+                  Explore my latest projects and see what I&apos;ve been working on.
                 </p>
                 <div className="mt-4 ml-16">
                   <Link href="/projects" className="text-base font-medium text-primary-600 hover:text-primary-500">

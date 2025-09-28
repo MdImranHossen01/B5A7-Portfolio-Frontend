@@ -74,6 +74,7 @@ export default function ResumeBuilder({ initialData, onSave, initialTitle }: Res
     handleSubmit,
     watch,
     formState: { errors },
+    setValue, // Add this to manually update form values
   } = useForm<ResumeData>({
     resolver: zodResolver(resumeSchema),
     defaultValues: initialData || {
@@ -278,9 +279,9 @@ export default function ResumeBuilder({ initialData, onSave, initialTitle }: Res
           <Label htmlFor="summary">Professional Summary</Label>
           <RichTextEditor
             content={watchedValues.summary}
-            onChange={(value) => {
-              // Update form value
-              // Note: This is a simplified approach. In a real app, you might want a more robust solution
+            onChange={(_value) => {
+              // Update the form value when the rich text editor changes
+              setValue('summary', _value);
             }}
             placeholder="Write a brief summary of your professional background and key achievements..."
           />
@@ -392,8 +393,9 @@ export default function ResumeBuilder({ initialData, onSave, initialTitle }: Res
                     <Label htmlFor={`experience.${index}.description`}>Description</Label>
                     <RichTextEditor
                       content={watchedValues.experience?.[index]?.description || ''}
-                      onChange={(value) => {
-                        // Update form value
+                      onChange={(_value) => {
+                        // Update the form value when the rich text editor changes
+                        setValue(`experience.${index}.description`, _value);
                       }}
                       placeholder="Describe your responsibilities and achievements..."
                     />
