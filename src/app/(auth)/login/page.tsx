@@ -19,11 +19,6 @@ const loginSchema = z.object({
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
-export const metadata = {
-  title: "Login | Portfolio",
-  description: "Login to your portfolio account to access private features.",
-};
-
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();

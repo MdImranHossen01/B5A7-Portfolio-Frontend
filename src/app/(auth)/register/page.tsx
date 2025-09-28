@@ -24,11 +24,6 @@ const registerSchema = z.object({
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
-export const metadata = {
-  title: 'Register | Portfolio',
-  description: 'Create a new account to access all features of the portfolio website.',
-};
-
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const { register: registerUser } = useAuth();
